@@ -35,8 +35,21 @@ namespace AspNetCoreAPI.WebAPI
             });
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IDummyRepository, DummyRepository>();
 
-            services.AddControllers();
+            services.AddCors(cors =>
+            {
+                cors.AddPolicy("WebApiCorsPolicy", opt =>
+                {
+                    opt.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    //opt.WithOrigins("").AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
+            services.AddControllers().AddNewtonsoftJson(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetCoreAPI.WebAPI", Version = "v1" });
@@ -53,7 +66,11 @@ namespace AspNetCoreAPI.WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspNetCoreAPI.WebAPI v1"));
             }
 
+            app.UseStaticFiles();
+
             app.UseRouting();
+
+            app.UseCors("WebApiCorsPolicy");
 
             app.UseAuthorization();
 

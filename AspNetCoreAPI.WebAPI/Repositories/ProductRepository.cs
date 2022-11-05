@@ -29,7 +29,7 @@ namespace AspNetCoreAPI.WebAPI.Repositories
 
         public async Task<Product> GetByIdAsync(int id)
         {
-            return await _context.Products.SingleOrDefaultAsync(x => x.Id == id);
+            return await _context.Products.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task UpdateAsync(Product product)
