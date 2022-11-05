@@ -1,4 +1,6 @@
 using AspNetCoreAPI.WebAPI.Data;
+using AspNetCoreAPI.WebAPI.Interfaces;
+using AspNetCoreAPI.WebAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +33,9 @@ namespace AspNetCoreAPI.WebAPI
             {
                 opt.UseSqlServer(Configuration.GetConnectionString("Local"));
             });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
