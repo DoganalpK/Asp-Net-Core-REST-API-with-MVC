@@ -1,0 +1,31 @@
+﻿@model AspNetCoreAPI.ConsumeAPI.MVC.Models.Product
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <h1>Create Product</h1>
+    <form asp-controller="Home" asp-action="Create" method="post">
+
+        <label>Product Name:</label>
+        <input type="text" asp-for="@Model.Name" />
+        <br />
+
+        <label>Product Stock:</label>
+        <input type="text" asp-for="@Model.Stock" />
+        <br />
+
+        <label>Product Price:</label>
+        <input type="text" asp-for="@Model.Price" />
+        <br />
+
+        <div>
+            <button type="submit">Add</button>
+        </div>
+
+    </form>
+
+</body>
+</html>
+

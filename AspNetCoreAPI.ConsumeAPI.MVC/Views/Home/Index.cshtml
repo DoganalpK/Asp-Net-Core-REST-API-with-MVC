@@ -1,0 +1,32 @@
+﻿@model List<AspNetCoreAPI.ConsumeAPI.MVC.Models.Product>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web API Consume with MVC</title>
+</head>
+<body>
+    <a asp-controller="Home" asp-action="Create">Add Product</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Stock</th>
+                <th>Product Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Stock</td>
+                    <td>@product.Price</td>
+                    <td><a asp-controller="Home" asp-action="Update" asp-route-id="@product.Id">Update</a></td>
+                    <td><a asp-controller="Home" asp-action="Remove" asp-route-id="@product.Id">Remove</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
