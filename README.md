@@ -1,8 +1,3 @@
-<div id="top"></div>
-
-
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <h3 align="center">Asp-Net-Core-REST-API-with-MVC</h3>
 </div>
